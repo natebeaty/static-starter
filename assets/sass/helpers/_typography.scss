@@ -1,0 +1,31 @@
+// Typography
+
+// Fonts
+$font-display: sans-serif;
+$font-header: sans-serif;
+$font-regular: sans-serif;
+
+h1,
+.h1 {
+  font: 32px/1 $font-header;
+  margin: 0 0 grid(2);
+  @extend %smooth;
+
+  @include media-md {
+    font-size: 60px;
+  }
+}
+
+h2,
+.h2 {
+	font: 24px/1 $font-header;
+  text-transform: uppercase;
+  @extend %smooth;
+}
+
+h3,
+.h3,
+h4,
+.h4 {
+	font: 12px/1.5 $font-display;
+}

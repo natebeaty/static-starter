@@ -1,0 +1,75 @@
+// Base styles
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  color: $black;
+  font: 12px/1.5 $font-regular;
+  overflow-x: hidden;
+  background: $white;
+
+  @include media-md {
+    font-size: 16px;
+  }
+}
+
+// Default link styles
+a {
+  color: $black;
+  text-decoration: none;
+  @include media-md {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+figure,
+img {
+  max-width: 100%;
+  height: auto;
+}
+figure {
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
+
+.alert {
+  background: $black;
+  color: $white;
+  text-align: center;
+  z-index: 1000;
+  padding: mobile-grid(3);
+  p {
+    margin: 0;
+  }
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
+
+  @include media-md {
+    padding: grid(3);
+    margin-left: columns(2);
+  }
+}
