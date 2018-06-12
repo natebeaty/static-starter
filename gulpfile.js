@@ -12,8 +12,29 @@ var sourcemaps   = require('gulp-sourcemaps');
 var runSequence  = require('run-sequence');
 var argv         = require('minimist')(process.argv.slice(2));
 var notify       = require('gulp-notify');
-var isProduction = argv.production;
+var svgstore     = require('gulp-svgstore');
+var svgmin       = require('gulp-svgmin');
 var browserSync  = require('browser-sync').create();
+var isProduction = argv.production;
+
+// SVGs to defs
+gulp.task('svgs', function() {
+  return gulp.src('assets/svgs/*.svg')
+    .pipe(svgmin({
+        plugins: [{
+            removeViewBox: false
+        }, {
+            removeEmptyAttrs: false
+        },{
+            mergePaths: false
+        },{
+            cleanupIDs: false
+        }]
+    }))
+    .pipe(svgstore({ inlineSvg: true }))
+    .pipe(rename({prefix: '_', suffix: '-defs', extname: '.txt'}))
+    .pipe(gulp.dest('assets/dist/'));
+});
 
 // smash CSS!
 gulp.task('styles', function() {
@@ -79,7 +100,7 @@ gulp.task('build', function(callback) {
     // production gulpin' (with revisions)
     runSequence(
       'clean',
-      ['styles','scripts'],
+      ['styles', 'scripts', 'svgs'],
       'rev',
       callback
     );
@@ -87,7 +108,7 @@ gulp.task('build', function(callback) {
     // dev gulpin'
     runSequence(
       'clean',
-      ['styles','scripts'],
+      ['styles', 'scripts', 'svgs'],
       callback
     );
   }
