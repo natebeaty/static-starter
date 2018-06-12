@@ -7,16 +7,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="shortcut icon" type="image/ico" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/ico" href="/assets/dist/images/favicon.png">
 
-    <link rel="stylesheet" href="assets/css/main.min.css">
+    <link rel="stylesheet" href="/assets/dist/css/main.css">
 
     <meta property="og:title" content="">
     <meta property="og:image" content="">
     <meta property="og:url" content="">
     <meta property="og:description" content="">
 
-    <script src="assets/js/no-build/modernizr.custom.js"></script>
+    <script src="/assets/dist/js/no-build/modernizr.custom.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-1"></script>
@@ -29,7 +29,7 @@
     </script>
   </head>
   <body>
-    <!-- include svg-defs with whatever (php,ruby,etc.), ex: <?php include_once("assets/svgs/build/svgs-defs.svg"); ?> -->
+    <!-- include svg-defs with whatever (php,ruby,etc.), ex: <?php include_once("/assets/dist/svgs/build/svgs-defs.svg"); ?> -->
     <header class="site-header" role="banner">
       <div class="wrap">
         <h1>Hello</h1>
@@ -47,6 +47,9 @@
         <p>What.</p>
       </div>
     </footer>
-    <script src="assets/js/build/site.min.js"></script>
+    <script src="/assets/dist/js/build/main.js"></script>
+    <script id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
   </body>
 </html>
