@@ -14,6 +14,7 @@ var argv         = require('minimist')(process.argv.slice(2));
 var notify       = require('gulp-notify');
 var svgstore     = require('gulp-svgstore');
 var svgmin       = require('gulp-svgmin');
+var rename       = require('gulp-rename');
 var browserSync  = require('browser-sync').create();
 var isProduction = argv.production;
 
@@ -21,18 +22,18 @@ var isProduction = argv.production;
 gulp.task('svgs', function() {
   return gulp.src('assets/svgs/*.svg')
     .pipe(svgmin({
-        plugins: [{
-            removeViewBox: false
-        }, {
-            removeEmptyAttrs: false
-        },{
-            mergePaths: false
-        },{
-            cleanupIDs: false
-        }]
+        plugins: [
+        { removeViewBox: false },
+        { removeEmptyAttrs: false },
+        { mergePaths: false },
+        { removeAttrs: {
+            attrs: ['stroke', 'fill-rule']
+          }
+        },
+        { cleanupIDs: false }]
     }))
     .pipe(svgstore({ inlineSvg: true }))
-    .pipe(rename({prefix: '_', suffix: '-defs', extname: '.txt'}))
+    .pipe(rename({suffix: '-defs'}))
     .pipe(gulp.dest('assets/dist/'));
 });
 
@@ -79,7 +80,7 @@ gulp.task('rev', function() {
 });
 
 // folders to watch for changes
-gulp.task('watch', ['styles', 'scripts'], function() {
+gulp.task('watch', ['styles', 'scripts', 'svgs'], function() {
   browserSync.init({
     files: ['*.html'],
     notify: false
@@ -89,6 +90,7 @@ gulp.task('watch', ['styles', 'scripts'], function() {
   gulp.watch('assets/sass/**/*.scss', ['styles']);
   gulp.watch('assets/js/*.js', ['scripts']);
   gulp.watch('assets/js/**/*.js', ['scripts']);
+  gulp.watch('assets/svgs/*.svg', ['svgs']);
 });
 
 // `gulp clean` - Deletes the build folder entirely.
