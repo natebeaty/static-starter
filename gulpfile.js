@@ -1,4 +1,11 @@
-// ‘cosm gulpin’
+/**
+ * Asset gulpin'
+ * compiles SCSS, js, sourcemaps, svgs into defs file, etc
+ *
+ * npx gulp watch = monitor changes for development
+ * npx gulp --production = compile assets and asset manifest for production
+ */
+
 var gulp         = require('gulp');
 var gulpif       = require('gulp-if');
 var sass         = require('gulp-sass');
