@@ -18,6 +18,11 @@ var rename       = require('gulp-rename');
 var browserSync  = require('browser-sync').create();
 var isProduction = argv.production;
 
+// Various config
+var conf = {
+  siteUrl: 'static-starter.localhost'
+};
+
 // SVGs to defs
 gulp.task('svgs', function() {
   return gulp.src('assets/svgs/*.svg')
@@ -82,8 +87,11 @@ gulp.task('rev', function() {
 // folders to watch for changes
 gulp.task('watch', ['styles', 'scripts', 'svgs'], function() {
   browserSync.init({
+    proxy: conf.siteUrl,
     files: ['*.html'],
-    notify: false
+    notify: false,
+    open: false
+
   });
 
   gulp.watch('assets/sass/*.scss', ['styles']);
