@@ -41,13 +41,13 @@
     @content;
   }
 }
-@mixin media-lg() {
-  @media screen and (min-width: $breakpoint-lg) {
+@mixin media-nav() {
+  @media screen and (min-width: $breakpoint-nav) {
     @content;
   }
 }
-@mixin media-nav() {
-  @media screen and (min-width: $breakpoint-nav) {
+@mixin media-lg() {
+  @media screen and (min-width: $breakpoint-lg) {
     @content;
   }
 }
@@ -59,12 +59,12 @@
 
 // On-the fly media-queries
 @mixin screen($res-min, $res-max) {
-  @media screen and (min-width: $res-min) and (max-width: $res-max) {
+  @media screen and (min-width: $res-min) and (max-width: #{$res-max - 1px}) {
     @content;
   }
 }
 @mixin max-screen($res) {
-  @media screen and (max-width: $res - 1px) {
+  @media screen and (max-width: #{$res - 1px}) {
     @content;
   }
 }

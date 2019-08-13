@@ -73,3 +73,30 @@ address {
     margin-left: columns(2);
   }
 }
+
+// This allows js to determine breakpoint
+#breakpoint-indicator {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+
+  &::after {
+    content: 'xs';
+    @include media-sm {
+      content: 'sm';
+    }
+    @include media-md {
+      content: 'md';
+    }
+    @include media-nav {
+      content: 'nav';
+    }
+    @include media-lg {
+      content: 'lg';
+    }
+    @include media-xl {
+      content: 'xl';
+    }
+  }
+}
